@@ -17,10 +17,9 @@
 
 $(document).ready(function(){
 
-	
-	var co = $.cookie('company');
-var tel = $.cookie('phone');
-var mail  = $.cookie('email');
+var co = localStorage.getItem("company");
+var tel = localStorage.getItem("phone");
+var mail  = localStorage.getItem("email");
 // autofill the fields
 $('#company').attr("value", co);
 $('#phone').attr("value", tel);
@@ -31,9 +30,9 @@ var company=$('#company').val();
 var phone=$('#phone').val();
 var email=$('#email').val();
 
-$.cookie('company', company, { expires: 600 });
-$.cookie('phone', phone, { expires: 600 });
-$.cookie('email', email, { expires: 600 });
+localStorage.setItem("company", $('#company').val());
+localStorage.setItem("phone", $('#phone').val());
+localStorage.setItem("email", $('#email').val());
 
 
 $.ajaxSetup({
@@ -75,6 +74,11 @@ $("#submit1").click(function(){
 var company=$('#company').val();
 var phone=$('#phone').val();
 var email=$('#email').val();
+
+localStorage.setItem("company", $('#company').val());
+localStorage.setItem("phone", $('#phone').val());
+localStorage.setItem("email", $('#email').val());
+
 
 
 
