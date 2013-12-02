@@ -29,6 +29,7 @@ $("#submit").click(function(){
 var company=$('#company').val();
 var phone=$('#phone').val();
 var email=$('#email').val();
+var message=$('#msg').val();
 
 localStorage.setItem("company", $('#company').val());
 localStorage.setItem("phone", $('#phone').val());
@@ -46,11 +47,10 @@ $.ajaxSetup({
    },
    complete:function(){
       $.mobile.loading('hide');  
-	    $("#box").show();
-		$("#box1").hide();
+		$("#box1").show();
    }
 });
-var params = "company="+company+"&email="+email+"&phone="+phone;
+var params = "company="+company+"&email="+email+"&message="+message+"&phone="+phone;
 $.ajax({
 
 type: "POST",
@@ -74,6 +74,7 @@ $("#submit1").click(function(){
 var company=$('#company').val();
 var phone=$('#phone').val();
 var email=$('#email').val();
+var message=$('#msg').val();
 
 localStorage.setItem("company", $('#company').val());
 localStorage.setItem("phone", $('#phone').val());
@@ -96,10 +97,9 @@ $.ajaxSetup({
    complete:function(){
       $.mobile.loading('hide');
 	 $("#box1").show();
-	 $("#box").hide();
    }
 });
-var params = "company="+company+"&email="+email+"&phone="+phone;
+var params = "company="+company+"&email="+email+"&message="+message+"&phone="+phone;
 $.ajax({
 
 type: "POST",
@@ -162,7 +162,7 @@ return false;
 		<div data-role="content" style="text-align:center">
         <p align="center">
             <div id="box1" hidden="true" class="success">
- We will call you shortly.Thank you!
+Message Sent
  </div>
 
 
@@ -179,12 +179,15 @@ return false;
         <input type="text" placeholder="Phone" name="phone" id="phone">
         
         <input type="text" placeholder="email" name="email" id="email">
+        
+        <input type="text" placeholder="message" name="message" id="msg">
            
            <a id='submit' data-role="button" rel="external" data-ajax="false" data-transition="none"> <img src="images/one.png" /><br>
   Pick Up our bin or documents</a>
   <a id='submit1' data-role="button" rel="external" data-ajax="false" data-transition="none"><img src="images/two.png" /><br>
   Please give us a call
   </a>
+  
 </form>
   
 
