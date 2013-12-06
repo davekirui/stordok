@@ -31,6 +31,9 @@ var phone=$('#phone').val();
 var email=$('#email').val();
 var message=$('#msg').val();
 
+
+
+
 localStorage.setItem("company", $('#company').val());
 localStorage.setItem("phone", $('#phone').val());
 localStorage.setItem("email", $('#email').val());
@@ -39,19 +42,39 @@ localStorage.setItem("email", $('#email').val());
 $.ajaxSetup({
     beforeSend:function(){
        $.mobile.loading( 'show', {
-	text: 'Sending your request...',
+	text: 'Loading list...',
 	textVisible: true,
 	theme: 'a',
 	html: ""
 });
    },
    complete:function(){
-      $.mobile.loading('hide');  
-		$("#box1").show();
+      $.mobile.loading('hide'); 
+	  $('#box1').show();
    }
 });
-var params = "company="+company+"&email="+email+"&message="+message+"&phone="+phone;
+
+/*$.ajaxSetup({
+    beforeSend:function(){
+       $.mobile.loading( 'show', {
+	text: 'Loading list...',
+	textVisible: true,
+	theme: 'a',
+	html: ""
+});
+   },
+   complete:function(){
+      $.mobile.loading('hide'); 
+   }
+});
+*/
+
+
+var params = "company="+company+"&email="+email+"&message="+message+"&phone="+phone
+
 $.ajax({
+
+
 
 type: "POST",
 url: "http://tecansi.com/stordok/ajax.php",
@@ -81,25 +104,23 @@ localStorage.setItem("phone", $('#phone').val());
 localStorage.setItem("email", $('#email').val());
 
 
-
-
-
+var params = "company="+company+"&email="+email+"&message="+message+"&phone="+phone
 
 $.ajaxSetup({
     beforeSend:function(){
        $.mobile.loading( 'show', {
-	text: 'Sending your request...',
+	text: 'Loading list...',
 	textVisible: true,
 	theme: 'a',
 	html: ""
 });
    },
    complete:function(){
-      $.mobile.loading('hide');
-	 $("#box1").show();
+      $.mobile.loading('hide'); 
+	  $('#box1').show();
    }
 });
-var params = "company="+company+"&email="+email+"&message="+message+"&phone="+phone;
+
 $.ajax({
 
 type: "POST",
@@ -159,11 +180,16 @@ return false;
   
 		</div>
 	
+    <div id="box">
+</div>
+    
 		<div data-role="content" style="text-align:center">
-        <p align="center">
-            <div id="box1" hidden="true" class="success">
+
+          <div id="box1" hidden="true" class="success">
 Message Sent
  </div>
+        <p align="center">
+          
 
 
 
@@ -177,13 +203,15 @@ Message Sent
         
         <input type="text" placeholder="email" name="email" id="email">
         
-        <input type="text" placeholder="message" name="message" id="msg">
+       
            
            <a id='submit' data-role="button" rel="external" data-ajax="false" data-transition="none"> <img src="images/one.png" /><br>
   Pick Up our bin or documents</a>
   <a id='submit1' data-role="button" rel="external" data-ajax="false" data-transition="none"><img src="images/two.png" /><br>
   Please give us a call
   </a>
+  
+   <input type="text" placeholder="message" name="message" id="msg" style="height:100px">
   
 </form>
   
