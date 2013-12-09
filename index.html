@@ -54,23 +54,9 @@ $.ajaxSetup({
    }
 });
 
-/*$.ajaxSetup({
-    beforeSend:function(){
-       $.mobile.loading( 'show', {
-	text: 'Loading list...',
-	textVisible: true,
-	theme: 'a',
-	html: ""
-});
-   },
-   complete:function(){
-      $.mobile.loading('hide'); 
-   }
-});
-*/
 
 
-var params = "company="+company+"&email="+email+"&message="+message+"&phone="+phone
+var params = "company="+company+"&email="+email+"&phone="+phone
 
 $.ajax({
 
@@ -139,6 +125,60 @@ return false;
 
 });
 
+//Send MSG
+
+$("#send").click(function(){
+var company=$('#company').val();
+var phone=$('#phone').val();
+var email=$('#email').val();
+var message=$('#msg').val();
+
+
+
+
+localStorage.setItem("company", $('#company').val());
+localStorage.setItem("phone", $('#phone').val());
+localStorage.setItem("email", $('#email').val());
+
+
+$.ajaxSetup({
+    beforeSend:function(){
+       $.mobile.loading( 'show', {
+	text: 'Loading list...',
+	textVisible: true,
+	theme: 'a',
+	html: ""
+});
+   },
+   complete:function(){
+      $.mobile.loading('hide'); 
+	  $('#box1').show();
+   }
+});
+
+
+
+var params = "company="+company+"&email="+email+"&message="+message+"&phone="+phone
+
+$.ajax({
+
+
+
+type: "POST",
+url: "http://tecansi.com/stordok/ajax2.php",
+data: params,
+
+success: function(html){
+	
+$("#box").html(html).show('fast');
+$("#box").listview().listview('refresh');
+
+
+}
+});
+return false;
+
+});
 
 });
  $("ol").listview('refresh');
@@ -210,8 +250,12 @@ Message Sent
   <a id='submit1' data-role="button" rel="external" data-ajax="false" data-transition="none"><img src="images/two.png" /><br>
   Please give us a call
   </a>
-  
-   <input type="text" placeholder="Message" name="message" id="msg" style="height:100px">
+<textarea placeholder="Message" style="height:100px" name="message" id="msg">
+</textarea>
+ 
+<div align="right">
+   <input type="submit" value="Send" data-inline="true" id="send"/>
+</div>
   
 </form>
   
